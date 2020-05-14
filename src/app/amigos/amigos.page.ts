@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
+import { isNgTemplate } from '@angular/compiler';
 
 @Component({
   selector: 'app-amigos',
@@ -35,16 +36,9 @@ export class AmigosPage implements OnInit {
       nivelAmizade: 5
     }]
 
-  deleteFriend(name) {
-    this.(array.forEach(this.friends => {
-      delete();
-    })
-    )
-  }
-
   constructor(public actionSheetController: ActionSheetController) { }
 
-  async presentActionSheet() {
+  async presentActionSheet(nome: string) {
     const actionSheet = await this.actionSheetController.create({
       header: 'Actions',
       buttons: [{
@@ -58,7 +52,7 @@ export class AmigosPage implements OnInit {
         text: 'Edit',
         icon: 'pencil',
         handler: () => {
-          console.log('Edit clicked');
+          this.deleteAmigo(nome);
         }
       }, {
         text: 'Cancel',
@@ -70,6 +64,12 @@ export class AmigosPage implements OnInit {
       }]
     });
     await actionSheet.present();
+  }
+
+  deleteAmigo(nome: string) {
+    this.friends.forEach((item, index) => {
+      if (item.nome === nome) this.friends.splice(index, 1)
+    });
   }
 
   ngOnInit() {

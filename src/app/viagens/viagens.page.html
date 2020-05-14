@@ -8,5 +8,11 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-card *ngFor="let travel of travels">
+    <ion-card-header>
+      <img src="{{travel.url}}" />
+      <ion-card-title>{{travel.title}}</ion-card-title>
+      <ion-card-subtitle>{{travel.description}}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
 </ion-content>
